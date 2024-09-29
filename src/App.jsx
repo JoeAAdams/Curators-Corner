@@ -1,96 +1,87 @@
 import { useEffect, useState } from "react";
 
+import museumSvg from "./svg/museum.svg";
+// import arrowUp from "./svg/arrow-up.svg";
+
 import "./App.css";
-import { searchMuseums } from "./Utils/api";
+
 import { ModalPopup } from "./Components/ModalPopup";
+import { SearchBar } from "./Components/SearchBar";
+import { MuseumArt } from "./Components/MuseumArt";
+
 function App() {
     const [museumData, setMuseumData] = useState([]);
     const [activeModal, setActiveModal] = useState(null);
-    const [search, setSearch] = useState("");
-    const [isLoading, setIsLoading] = useState(false);
+    const [viewPersonalExhibits, setViewPersonalExhibits] = useState(false);
+    const [personalExhibits, setPersonalExhibits] = useState([]);
+    const [searched, setSearched] = useState(false);
 
-    useEffect(() => {}, [museumData]);
-
-    function handleSearch(event) {
-        setIsLoading(true);
-        searchMuseums(search).then((data) => {
-            setMuseumData(data);
-            setIsLoading(false);
-        });
-        event.preventDefault();
-    }
+    useEffect(() => {}, [museumData, viewPersonalExhibits]);
 
     return (
         <>
-            <div
-                className={`flex items-center justify-center w-screen bg-gradient-to-b from-blue-700 to-blue-900 ${
-                    museumData.length ? `h-32` : `h-screen`
-                } transition-[height] ease-out delay-200`}
-            >
-                <form
-                    className={`flex-grow-0 left-1/2 ${
-                        museumData.length ? "" : "top-1/2"
-                    } transition`}
-                    onSubmit={handleSearch}
-                >
-                    <input
-                        name="search"
-                        onChange={(e) => setSearch(e.target.value)}
-                        type="search"
-                        className="border-solid border-2 border-black h-full"
-                    />
-
-                    <button
-                        type="submit"
-                        className="border-solid border-2 border-black"
-                    >
-                        Search
-                    </button>
-                    {isLoading && (
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            className="animate-spin"
-                            width="1em"
-                            height="1em"
-                            viewBox="0 0 24 24"
-                        >
-                            <path
-                                fill="white"
-                                d="M12,4a8,8,0,0,1,7.89,6.7A1.53,1.53,0,0,0,21.38,12h0a1.5,1.5,0,0,0,1.48-1.75,11,11,0,0,0-21.72,0A1.5,1.5,0,0,0,2.62,12h0a1.53,1.53,0,0,0,1.49-1.3A8,8,0,0,1,12,4Z"
-                                transform="rotate(360 12 12)"
-                            />
-                        </svg>
-                    )}
-                </form>
-            </div>
-            {museumData.length > 0 && (
-                <div className="flex flex-row justify-center flex-wrap gap-5 mt-8">
-                    {museumData.map((data) => {
-                        if (data.images[0]) {
-                            return (
-                                <div
-                                    key={data.id}
-                                    onClick={() => setActiveModal(data)}
-                                    className="p-2 flex flex-col justify-center w-96 h-96 border-solid border-black border-2"
-                                >
-                                    <img
-                                        src={data.images[0]}
-                                        className="object-scale-down h-72 flex-grow m-2"
-                                    />
-                                    <p className="mt-2">{data.title}</p>
-                                </div>
-                            );
-                        }
-                    })}
-                </div>
-            )}
-
-            {activeModal ? (
-                <ModalPopup
-                    data={activeModal}
-                    setActiveModal={setActiveModal}
+            <nav>
+                <SearchBar
+                    setMuseumData={setMuseumData}
+                    setViewPersonalExhibits={setViewPersonalExhibits}
+                    setSearched={setSearched}
+                    searched={searched}
                 />
-            ) : null}
+            </nav>
+            <main >
+                {viewPersonalExhibits && (
+                    <h1 className="w-full text-center text-6xl mt-6 underline">
+                        Personal Exhibits
+                    </h1>
+                )}
+                {searched && (
+                    <button
+                        id="PersonalGallery"
+                        className="absolute z-10 bg-white rounded-xl top-36 right-4 border-black border-solid border-2 flex  flex-col justify-center align-middle  lg:right-6"
+                        onClick={() =>
+                            setViewPersonalExhibits(!viewPersonalExhibits)
+                        }
+                    >
+                        <img
+                            src={museumSvg}
+                            height="64"
+                            width="64"
+                            alt="personal gallery"
+                        />
+                    </button>
+                )}
+
+                {searched && (
+                    <MuseumArt
+                        museumData={
+                            viewPersonalExhibits ? personalExhibits : museumData
+                        }
+                        setActiveModal={setActiveModal}
+                    />
+                )}
+
+                {activeModal && (
+                    <ModalPopup
+                        data={activeModal}
+                        setActiveModal={setActiveModal}
+                        setPersonalExhibits={setPersonalExhibits}
+                        showAddButton={!viewPersonalExhibits}
+                    />
+                )}
+
+                {/* TO DO  */}
+                {/* {museumData.length > 0 && window.scrollY > 1 && (
+                <button
+                    id="PersonalGallery"
+                    className="fixed z-10 bg-white rounded-xl mt-2 right-4 bottom-4 border-black border-solid border-2 flex  flex-col justify-center align-middle lg:mt-6 lg:right-6"
+                    onClick={() => {
+                        window.scrollTo(0, 0);
+                    }}
+                >
+                    <img src={arrowUp} height="64" width="64" />
+                </button>
+            )} */}
+            </main>
         </>
     );
 }
