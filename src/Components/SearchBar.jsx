@@ -46,7 +46,10 @@ export function SearchBar({
                 onSubmit={handleSearch}
             >
                 {isLoading && (
-                    <img className="animate-spin fixed" src={spinner} />
+                    <img
+                        className="absolute animate-spin mt-1 ml-[425px]"
+                        src={spinner}
+                    />
                 )}
                 <input
                     aria-label="search museums"
