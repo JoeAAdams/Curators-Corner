@@ -47,13 +47,13 @@ export function ModalPopup({
                 }}
                 className="fixed top-[0%] left-[0%] z-20 h-full w-full"
             />
-            <div className="bg-white fixed p-4 w-full h-[80%] lg:w-2/3 lg:h-auto lg:max-h-[80%] mt-32 top-1/2 left-1/2 -mr-[50%] -translate-x-1/2 -translate-y-2/3 z-30 border-solid border-black border-2 flex flex-col">
+            <div className="bg-white fixed p-4 w-full h-[80%] lg:w-2/3 lg:h-auto lg:max-h-[80%] mt-32 top-1/2 left-1/2 -mr-[50%] -translate-x-1/2 -translate-y-2/3 z-30 border-solid border-black border-2 flex flex-col shadow-md">
                 <button
                     aria-label="close window"
                     onClick={() => {
                         setActiveModal(null);
                     }}
-                    className="absolute h-10 w-10 rounded-full cursor-pointer right-2 top-2 lg:right-4 lg:top-4 bg-gray-300 hover:bg-gray-500 bg-opacity-30 transition-colors ease-in-out delay-100"
+                    className="absolute h-10 w-10 rounded-full cursor-pointer right-2 top-2 lg:right-4 lg:top-4 bg-gray-300 hover:bg-gray-400 bg-opacity-30 transition-colors ease-in-out delay-100"
                 >
                     <img
                         src={cross}
@@ -73,7 +73,7 @@ export function ModalPopup({
                             onClick={() => {
                                 SetCurrentImage((x) => x + 1);
                             }}
-                            className="fixed right-3 z-50 cursor-pointer bg-gray-300  rounded-full hover:bg-gray-500 bg-opacity-30 transition-colors ease-in-out delay-100"
+                            className="fixed right-3 z-50 cursor-pointer bg-gray-300  rounded-full hover:bg-gray-400 bg-opacity-30 transition-colors ease-in-out delay-100"
                             src={arrowRight}
                             height="32"
                             width="32"
@@ -85,7 +85,7 @@ export function ModalPopup({
                             onClick={() => {
                                 SetCurrentImage((x) => x - 1);
                             }}
-                            className="fixed left-3 z-50 cursor-pointer bg-gray-300  rounded-full hover:bg-gray-500 bg-opacity-30 transition-colors ease-in-out delay-100"
+                            className="fixed left-3 z-50 cursor-pointer bg-gray-300  rounded-full hover:bg-gray-400 bg-opacity-30 transition-colors ease-in-out delay-100"
                             src={arrowLeft}
                             height="32"
                             width="32"

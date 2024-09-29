@@ -37,7 +37,7 @@ function App() {
                 {searched && (
                     <button
                         id="PersonalGallery"
-                        className="absolute z-10 bg-white rounded-xl top-36 right-4 border-black border-solid border-2 flex  flex-col justify-center align-middle  lg:right-6"
+                        className="fixed z-10 bg-white rounded-xl top-36 right-4 border-black border-solid border-2 flex  flex-col justify-center align-middle  lg:right-6"
                         onClick={() =>
                             setViewPersonalExhibits(!viewPersonalExhibits)
                         }
