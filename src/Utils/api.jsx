@@ -15,7 +15,6 @@ export function searchMuseums(
     createdBefore = currentYear,
     createdAfter = 0
 ) {
-    console.log(createdAfter, createdBefore);
     const clevelandData = cleveland
         .get("artworks", {
             params: {
@@ -57,7 +56,6 @@ export function searchMuseums(
 function unifyData(clevelandData, harvardData) {
     const unifiedData = [];
     //sort data for cleveland art museum
-    console.log("cleveland", clevelandData);
     clevelandData.map((data) => {
         const imageURLs = data.alternate_images.map((image) => image.web.url);
         let artists = "";
@@ -82,7 +80,6 @@ function unifyData(clevelandData, harvardData) {
     });
 
     //sort data for harvard university
-    console.log("harvard", harvardData);
     harvardData.map((data) => {
         const imageURLs = [];
         let artists = "";
@@ -110,6 +107,5 @@ function unifyData(clevelandData, harvardData) {
         });
     });
 
-    console.log(unifiedData);
     return unifiedData;
 }

@@ -17,7 +17,6 @@ export function SearchBar({
 
     function handleSearch(event) {
         event.preventDefault();
-        console.log(createdBefore, createdAfter, search);
         setIsLoading(true);
         searchMuseums(search, createdBefore, createdAfter).then((data) => {
             setViewPersonalExhibits(false);
@@ -69,7 +68,6 @@ export function SearchBar({
                             placeholder={0}
                             type="number"
                             onKeyUp={(e) => {
-                                console.log(createdAfter);
                                 !/([0-9]|Backspace|Tab|ArrowLeft|ArrowRight)/.test(
                                     e.key
                                 )
