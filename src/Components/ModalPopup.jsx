@@ -30,11 +30,13 @@ export function ModalPopup({
         });
     }
 
-    function handleRemoveFromPersonal () {
+    function handleRemoveFromPersonal() {
         setPersonalExhibits((personalExhibits) => {
-            const newPeronsalExhibits = personalExhibits.filter((exhibit) => exhibit !== data)
-            return newPeronsalExhibits
-        })
+            const newPeronsalExhibits = personalExhibits.filter(
+                (exhibit) => exhibit !== data
+            );
+            return newPeronsalExhibits;
+        });
     }
 
     return (
@@ -47,7 +49,7 @@ export function ModalPopup({
                 }}
                 className="fixed top-[0%] left-[0%] z-20 h-full w-full"
             />
-            <div className="bg-white fixed p-4 w-full h-[80%] lg:w-2/3 lg:h-auto lg:max-h-[80%] mt-32 top-1/2 left-1/2 -mr-[50%] -translate-x-1/2 -translate-y-2/3 z-30 border-solid border-black border-2 flex flex-col shadow-md">
+            <div className="bg-white rounded-md fixed p-4 w-full h-[80%] lg:w-2/3 lg:h-auto lg:max-h-[80%] mt-32 top-1/2 left-1/2 -mr-[50%] -translate-x-1/2 -translate-y-2/3 z-30 border-solid border-black border-2 flex flex-col shadow-xl">
                 <button
                     aria-label="close window"
                     onClick={() => {
@@ -122,41 +124,47 @@ export function ModalPopup({
                         </a>
                     </p>
                 </section>
-
-                {showAddButton ? (
-                    <label
-                        className="relative mt-2 flex gap-3 left-[45%] lg:left-[75%]"
-                        tmlFor="addToPersonal"
-                    >
-                        Add to personal gallery
-                        <button
-                            id="addToPersonal"
-                            onClick={handleAddToPersonal}
-                            className="active:animate-buttonBounce"
+                <div className="w-full flex flex-row-reverse">
+                    {showAddButton ? (
+                        <label
+                            className="relative mt-2 flex gap-3 "
+                            htmlFor="addToPersonal"
                         >
-                            <img
-                                src={galleryIcon}
-                                alt="add to personal exhibit"
-                                height={"32"}
-                                width={"32"}
-                            />
-                        </button>
-                    </label>
-                ) : (
-                    <button
-                        className="relative left-[95%] mt-2"
-                        id="removeFromPersonal"
-                        onClick={handleRemoveFromPersonal}
-                    >
-                        <img
-                            src={remove}
-                            alt="add to personal exhibit"
-                            height={"32"}
-                            width={"32"}
-                            className="active:animate-buttonBounce"
-                        />
-                    </button>
-                )}
+                            Add to personal gallery
+                            <button
+                                id="addToPersonal"
+                                onClick={handleAddToPersonal}
+                                className="active:animate-buttonBounce"
+                            >
+                                <img
+                                    src={galleryIcon}
+                                    alt="add to personal exhibit"
+                                    height={"32"}
+                                    width={"32"}
+                                />
+                            </button>
+                        </label>
+                    ) : (
+                        <label
+                            className="relative mt-2 flex gap-3 "
+                            htmlFor="removeFromPersonal"
+                        >
+                            Remove from personal exhibit
+                            <button
+                                className="active:animate-buttonBounce"
+                                id="removeFromPersonal"
+                                onClick={handleRemoveFromPersonal}
+                            >
+                                <img
+                                    src={remove}
+                                    alt="add to personal exhibit"
+                                    height={"32"}
+                                    width={"32"}
+                                />
+                            </button>
+                        </label>
+                    )}
+                </div>
             </div>
         </>
     );

@@ -28,27 +28,37 @@ function App() {
                     searched={searched}
                 />
             </nav>
-            <main >
+            <main>
                 {viewPersonalExhibits && (
                     <h1 className="w-full text-center text-6xl mt-6 underline">
                         Personal Exhibits
                     </h1>
                 )}
                 {searched && (
-                    <button
-                        id="PersonalGallery"
-                        className="fixed z-10 bg-white rounded-xl top-36 right-4 border-black border-solid border-2 flex  flex-col justify-center align-middle  lg:right-6"
-                        onClick={() =>
-                            setViewPersonalExhibits(!viewPersonalExhibits)
-                        }
+                    <label
+                        htmlFor="PersonalGallery"
+                        className="fixed top-36 right-4 lg:right-6 flex  flex-col justify-center align-middle items-center cursor-pointer"
                     >
-                        <img
-                            src={museumSvg}
-                            height="64"
-                            width="64"
-                            alt="personal gallery"
-                        />
-                    </button>
+                        <button
+                            id="PersonalGallery"
+                            className=" shadow-lg z-10 bg-white rounded-xl  border-black border-solid border-2  "
+                            onClick={() =>
+                                setViewPersonalExhibits(!viewPersonalExhibits)
+                            }
+                        >
+                            <img
+                                src={museumSvg}
+                                height="64"
+                                width="64"
+                                alt="personal gallery"
+                            />
+                        </button>
+                        <span className="bg-white  shadow-md pl-0.5 pr-0.5">
+                            {viewPersonalExhibits
+                                ? "Return to main gallery"
+                                : "View Personal Gallery"}
+                        </span>
+                    </label>
                 )}
 
                 {searched && (

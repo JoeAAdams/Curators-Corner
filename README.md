@@ -1,17 +1,22 @@
 # Curators-Corner
-https://curators-corner.netlify.app/
+
+Curators corner is an app that allows the user to browse exhibits from Harvard University and Cleveland Art Museum using their public API's using search terms and dates of creation, then add exhibits they choose to their own personal gallery.
+
+Link to hosted website: https://curators-corner.netlify.app/
 ---
 
 ### Linux installation
 
-in your console
+```Node.js v21.2.0```
+
+in your console type
 
 ```
-mkdir Curators-corner
-cd Curators-corner
-git init
-git pull https://github.com/JoeAAdams/Curators-Corner.git
-npm install -d
+- mkdir Curators-corner
+- cd Curators-corner
+- git init
+- git pull https://github.com/JoeAAdams/Curators-Corner.git
+- npm install -d
 ```
 
 create a folder called .env.local and put inside:

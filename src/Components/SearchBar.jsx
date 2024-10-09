@@ -29,85 +29,116 @@ export function SearchBar({
 
     return (
         <div
-            className={`shadow-lg border-b-2 border-black flex flex-col items-center justify-center w-screen bg-gradient-to-tr from-blue-700 to-purple-900 via-purple-600  ${
-                searched ? `h-32` : `h-screen`
+            className={`shadow-lg border-b-2 border-black flex flex-col items-center pt-3 justify-center w-screen bg-[url('https://openaccess-cdn.clevelandart.org/alternate/1961.39/1961.39_alt0_web.jpg')] bg-cover ${
+                searched ? `h-40` : `h-screen`
             } transition-[height] ease-out delay-200`}
         >
-            <h1
-                className={`text-8xl bottom-20 ${
-                    searched && !isLoading ? `hidden` : `relative`
-                } transition-opacity ease-in delay-100 `}
+            <div
+                className={`${
+                    !searched &&
+                    "border-black border-2 p-5 bg-gray-300 bg-opacity-50"
+                } w-screen lg:w-auto flex flex-col items-center`}
             >
-                Curators Corner
-            </h1>
-
-            <form
-                className={`align-middle flex flex-grow-0 flex-col gap-2 w-screen lg:w-auto p-2 lg:p-0`}
-                onSubmit={handleSearch}
-            >
-                {isLoading && (
-                    <img
-                        className="absolute animate-spin mt-1 ml-[425px]"
-                        src={spinner}
-                    />
-                )}
-                <input
-                    aria-label="search museums"
-                    name="search"
-                    onChange={(e) => setSearch(e.target.value)}
-                    type="search"
-                    autoComplete="false"
-                    autoFocus={true}
-                    placeholder="Search name or relative information"
-                    className="border-solid border-2 border-black h-full pl-2 lr-2"
-                />
-                <div className="flex flex-row">
-                    <div className="flex flex-col">
-                        <p>Created After</p>
-
-                        <input
-                            aria-label="Created after date"
-                            name="createdAfter"
-                            placeholder={0}
-                            type="number"
-                            onKeyUp={(e) => {
-                                !/([0-9]|Backspace|Tab|ArrowLeft|ArrowRight)/.test(
-                                    e.key
-                                )
-                                    ? e.preventDefault()
-                                    : setCreatedAfter(e.target.value);
-                            }}
-                            onSubmit={(e) => setCreatedAfter(e.target.value)}
-                            className="pl-2 lr-2 w-1/2 rounded-md [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
-                        />
-                    </div>
-                    <div className="flex flex-col justify-center align-middle content-center">
-                        <p>Created before</p>
-
-                        <input
-                            aria-label="Created before date"
-                            name="createdBefore"
-                            placeholder={new Date().getFullYear() + 1}
-                            type="number"
-                            onKeyUp={(e) => {
-                                !/([0-9]|Backspace|Tab|ArrowLeft|ArrowRight)/.test(
-                                    e.key
-                                )
-                                    ? e.preventDefault()
-                                    : setCreatedBefore(e.target.value);
-                            }}
-                            onSubmit={(e) => setCreatedBefore(e.target.value)}
-                            className="w-1/2 pl-2 lr-2 rounded-md [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
-                        />
-                    </div>
-                </div>
-                <button
-                    type="submit"
-                    className="border-solid border-2 border-black bg-white"
+                <h1
+                    className={`drop-shadow-[1.2px_1.2px_1.2px_rgba(255,255,255,1)] text-4xl pt-2 lg:text-8xl md:text-7xl bottom-5 ${
+                        searched ? `hidden` : `relative`
+                    } transition-opacity ease-in delay-100 `}
                 >
-                    Search
-                </button>
-            </form>
+                    Curators Corner
+                </h1>
+                {!searched && (
+                    <p
+                        className={`lg:w-1/2 md:w-2/3 p-5 sm:w-3/4 mb-5 drop-shadow-[0_0_2.5px_rgb(255,255,255)] ${
+                            searched && !isLoading ? `hidden` : `relative`
+                        } transition-opacity ease-in delay-100`}
+                    >
+                        Welcome to Curators Corner. Here you can search for
+                        images stored within the Harvard University and
+                        Cleveland art museum archives to add to your own
+                        personal exhibit
+                    </p>
+                )}
+
+                <form
+                    className={` align-middle flex flex-col gap-2 w-screen lg:w-auto p-2 lg:p-0`}
+                    onSubmit={handleSearch}
+                >
+                    <input
+                        aria-label="search museums"
+                        name="search"
+                        onChange={(e) => setSearch(e.target.value)}
+                        type="search"
+                        autoComplete="false"
+                        autoFocus={true}
+                        placeholder="Search name or relative information"
+                        className="border-solid border-2 border-black h-full pl-2 lr-2"
+                    />
+                    <div className="flex flex-row">
+                        <div className="flex flex-col">
+                            <p>Created After</p>
+
+                            <input
+                                aria-label="Created after date"
+                                name="createdAfter"
+                                placeholder={0}
+                                type="number"
+                                onKeyUp={(e) => {
+                                    !/([0-9]|Backspace|Tab|ArrowLeft|ArrowRight)/.test(
+                                        e.key
+                                    )
+                                        ? e.preventDefault()
+                                        : setCreatedAfter(e.target.value);
+                                }}
+                                onSubmit={(e) =>
+                                    setCreatedAfter(e.target.value)
+                                }
+                                className="pl-2 lr-2 w-1/2 rounded-md [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+                            />
+                        </div>
+                        <div className="flex flex-col justify-center align-middle content-center">
+                            <p>Created before</p>
+
+                            <input
+                                aria-label="Created before date"
+                                name="createdBefore"
+                                placeholder={new Date().getFullYear() + 1}
+                                type="number"
+                                onKeyUp={(e) => {
+                                    !/([0-9]|Backspace|Tab|ArrowLeft|ArrowRight)/.test(
+                                        e.key
+                                    )
+                                        ? e.preventDefault()
+                                        : setCreatedBefore(e.target.value);
+                                }}
+                                onSubmit={(e) =>
+                                    setCreatedBefore(e.target.value)
+                                }
+                                className="w-1/2 pl-2 lr-2 rounded-md [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+                            />
+                        </div>
+                    </div>
+
+                    <button
+                        type="submit"
+                        className="border-solid border-2 border-black bg-white"
+                    >
+                        Search
+                    </button>
+                    <p
+                        className={`relative mb-1 w-full flex flex-row gap-2 ${
+                            !isLoading && "invisible"
+                        }`}
+                    >
+                        Searching...
+                        <img
+                            src={spinner}
+                            className="animate-spin"
+                            height={"15"}
+                            width={"15"}
+                        />
+                    </p>
+                </form>
+            </div>
         </div>
     );
 }

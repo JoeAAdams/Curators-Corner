@@ -13,7 +13,9 @@ export default {
                     },
                 },
             },
-            animation: { buttonBounce: "buttonBounce 1s ease-in-out" },
+            animation: {
+                buttonBounce: "buttonBounce 1s ease-in-out",
+            },
         },
     },
     plugins: [],
