@@ -24,7 +24,11 @@ export function SearchBar({
             setIsLoading(false);
             setSearched(true);
         });
-        event.preventDefault();
+    }
+
+    function handleChange(event) {
+        console.log(event.target.value);
+        if (!/^\d+$/.test(event.target.value)) console.log("oops");
     }
 
     return (
@@ -81,17 +85,15 @@ export function SearchBar({
                                 aria-label="Created after date"
                                 name="createdAfter"
                                 placeholder={0}
-                                type="number"
-                                onKeyUp={(e) => {
-                                    !/([0-9]|Backspace|Tab|ArrowLeft|ArrowRight)/.test(
-                                        e.key
+                                type="tel"
+                                value={createdAfter}
+                                onChange={(event) => {
+                                    if (
+                                        /^\d+$/.test(event.target.value) ||
+                                        event.target.value === ""
                                     )
-                                        ? e.preventDefault()
-                                        : setCreatedAfter(e.target.value);
+                                        setCreatedAfter(event.target.value);
                                 }}
-                                onSubmit={(e) =>
-                                    setCreatedAfter(e.target.value)
-                                }
                                 className="pl-2 lr-2 w-1/2 rounded-md [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
                             />
                         </div>
@@ -102,17 +104,15 @@ export function SearchBar({
                                 aria-label="Created before date"
                                 name="createdBefore"
                                 placeholder={new Date().getFullYear() + 1}
-                                type="number"
-                                onKeyUp={(e) => {
-                                    !/([0-9]|Backspace|Tab|ArrowLeft|ArrowRight)/.test(
-                                        e.key
+                                type="tel"
+                                value={createdBefore}
+                                onChange={(event) => {
+                                    if (
+                                        /^\d+$/.test(event.target.value) ||
+                                        event.target.value === ""
                                     )
-                                        ? e.preventDefault()
-                                        : setCreatedBefore(e.target.value);
+                                        setCreatedBefore(event.target.value);
                                 }}
-                                onSubmit={(e) =>
-                                    setCreatedBefore(e.target.value)
-                                }
                                 className="w-1/2 pl-2 lr-2 rounded-md [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
                             />
                         </div>

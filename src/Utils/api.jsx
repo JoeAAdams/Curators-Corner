@@ -15,6 +15,8 @@ export function searchMuseums(
     createdBefore = currentYear,
     createdAfter = 0
 ) {
+    if (!createdAfter) createdAfter = 0;
+    if (!createdBefore) createdBefore = currentYear;
     const clevelandData = cleveland
         .get("artworks", {
             params: {
